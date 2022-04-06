@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "hardhat",
   "version": "2.9.1",
   "author": "Nomic Labs LLC",

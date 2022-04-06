@@ -53,7 +53,7 @@ describe("Local accounts provider", () => {
     const response = (await wrapper.request({
       method: "eth_accounts",
     })) as string[];
-
+    //@dipesh there is a function privateKeyToAddress
     assert.equal(response[0], privateKeyToAddress(accounts[0]));
     assert.equal(response[1], privateKeyToAddress(accounts[1]));
   });

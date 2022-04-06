@@ -1,6 +1,8 @@
 import { BN } from "ethereumjs-util";
 import * as t from "io-ts";
 
+//@dipesh this seems to be the critical most file which governs the additional functions in the hardhat node.  We need to be able to just take control of this file
+
 import { BoundExperimentalHardhatNetworkMessageTraceHook } from "../../../../types";
 import {
   numberToRpcQuantity,
@@ -17,7 +19,7 @@ import {
 } from "../../../core/providers/errors";
 import { MessageTrace } from "../../stack-traces/message-trace";
 import { MiningTimer } from "../MiningTimer";
-import { HardhatNode } from "../node";
+import { HardhatNode } from "../node"; //@dipesh importing HardhatNode
 import { MineBlockResult } from "../node-types";
 
 import { ModulesLogger } from "./logger";
@@ -35,7 +37,8 @@ export class EvmModule {
     private readonly _logger: ModulesLogger,
     private readonly _experimentalHardhatNetworkMessageTraceHooks: BoundExperimentalHardhatNetworkMessageTraceHook[] = []
   ) {}
-
+  
+  // @dipesh it appears that they are creating a hardhat node and then a new object EVMModule which is constructed with the HardhatNode and others and then adds the following functions to the node
   public async processRequest(
     method: string,
     params: any[] = []

@@ -28,8 +28,9 @@ describe("Network config typeguards", async () => {
   });
 });
 
-describe("Base provider creation", () => {
+describe("Base provider creation", () => {  //@dipesh it is creating a network over here with the default network parameters
   it("Should create a valid HTTP provider and wrap it", () => {
+    //@dipesh they are creating a provider only here.  The rest is creating a mockedProvider
     const provider = createProvider("net", {
       url: "http://localhost:8545",
       ...defaultHttpNetworkParams,
@@ -45,7 +46,7 @@ describe("Base providers wrapping", () => {
   const CHAIN_ID = 1337;
 
   beforeEach(() => {
-    mockedProvider = new MockedProvider();
+    mockedProvider = new MockedProvider();  //@dipesh to check what is this MockedProvider
     mockedProvider.setReturnValue("web3_clientVersion", "Not ganache");
     mockedProvider.setReturnValue("net_version", `${CHAIN_ID}`);
     mockedProvider.setReturnValue("eth_getBlockByNumber", {
@@ -58,7 +59,7 @@ describe("Base providers wrapping", () => {
 
   describe("Accounts wrapping", () => {
     it("Should wrap with a list of private keys as accounts", async () => {
-      const provider = applyProviderWrappers(mockedProvider, {
+      const provider = applyProviderWrappers(mockedProvider, { //@dipesh this is setting up the provider with the private keys
         accounts: [
           "0x5ca14ebaee5e4a48b5341d9225f856115be72df55c7621b73fb0b6a1fdefcf24",
           "0x4e24948ea2bbd95ccd2bac641aadf36acd7e7cc011b1186a83dfe8db6cc7b1ae",
@@ -137,6 +138,7 @@ describe("Base providers wrapping", () => {
       const provider = applyProviderWrappers(mockedProvider, {
         url: "",
       });
+      //@dipesh the function applyProviderWrappers is critcal
 
       await provider.request({ method: "eth_sendTransaction", params: [{}] });
       const [tx] = mockedProvider.getLatestParams("eth_sendTransaction");

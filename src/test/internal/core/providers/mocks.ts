@@ -2,6 +2,7 @@ import { EventEmitter } from "events";
 
 import { EIP1193Provider, RequestArguments } from "../../../../src/types";
 
+//@dipesh Need to check up on EIP1193Provider
 export class MockedProvider extends EventEmitter implements EIP1193Provider {
   private _returnValues: any = {};
   private _latestParams: any = {};

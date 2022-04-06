@@ -13,7 +13,7 @@ import { MockedProvider } from "./mocks";
 
 describe("ChainIdValidatorProvider", () => {
   it("should fail when configured chain id dont match the real chain id", async () => {
-    const mock = new MockedProvider();
+    const mock = new MockedProvider(); //@dipesh creating a mockedProvider
     mock.setReturnValue("eth_chainId", "0xabcabc");
 
     const wrapper = new ChainIdValidatorProvider(mock, 66666);
